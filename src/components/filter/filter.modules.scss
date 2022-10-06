@@ -1,0 +1,124 @@
+.transbording-filters {  
+  line-height: 12px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #4A4A4A;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  
+  .transbording-filters_title {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 10px 0 10px 20px;    
+    background-color: #ffffff;
+  }
+
+  .transbording-filters_option {
+    min-height: 20px;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    letter-spacing: 0px;
+    text-align: left;
+    padding: 5px 20px;
+    text-align: left;
+    position: relative;
+    cursor: pointer;
+    background-color: #ffffff;   
+
+    &:hover {
+      background-color: #F1FCFF;
+    }
+    
+    &:last-child {
+      padding-bottom: 20px;
+    }
+
+    &-checkbox {
+      position: absolute;
+      height: 20px;
+      width: 20px;
+      background-image: url('./Checkbox.png');
+      background-color: #ffffff;
+      padding-left: -10px;
+    }
+
+    input[type="checkbox"] {
+      width: 20px;
+      cursor: pointer;
+      height: 20px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      position: absolute;
+    }
+      
+    &-description {
+      margin-left: 25px;
+      position: absolute;
+      top: 18%;
+      background-color: #ffffff;
+
+    }
+  }
+}
+
+.sort-btn {
+  display: flex;
+  flex-direction: row;
+  margin: 10px 20px;
+  justify-content: center;
+  flex: 0 0 33.33%;
+  border-radius: 5%;
+
+  .btn {
+  border: 1px solid #DFE5EC;
+  padding: 15px;
+  background-color: #ffffff;
+  font-size: 12px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    word-break: break-all;
+    color: #4A4A4A;
+    background-color: #ffffff;
+
+  &:hover {
+    background: #2196F3;
+    color: white;
+  }
+ }
+}
+
+.transbording-filters_option-input:checked + span.transbording-filters_option-checkbox{
+      background-image: url('./Checkbox-done.png');
+}
+
+.transbording-filters_option:hover > span.transbording-filters_option-description {
+  background-color: #F1FCFF;
+}
+
+@media (min-width: 678px) {
+
+  .transbording-filters {
+    position: absolute;
+    left: 20px;
+    width: 230px;
+    top: -10px;
+    
+  }
+
+  .sort-btn {
+    position: absolute;
+    right: 20px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+
+  }
+}

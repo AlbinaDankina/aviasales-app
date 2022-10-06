@@ -1,0 +1,27 @@
+ .app_wrapper {
+    position: relative;
+    height: 100vh;
+    width:100%;
+    box-sizing: content-box;
+}
+
+@media (min-width: 678px) {
+    .app_wrapper {
+        position: relative;
+        width: 800px;
+        margin: 150px auto 20px auto;
+        height: 100vh;
+        
+    }
+
+    .logo {
+        background-image: url('./Logo.png');
+        position: absolute;
+        top: -90px;
+        left: 45%;
+        width: 80px;
+        height: 83px;
+        z-index: 40;
+    }
+
+}

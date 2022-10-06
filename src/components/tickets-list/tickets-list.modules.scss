@@ -1,0 +1,19 @@
+.tickets_list {
+    list-style-type: none;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    padding-inline-start: 0;
+    margin: 10px 20px;
+}
+
+
+@media (min-width: 678px) { 
+    .tickets_list {
+        position: absolute;
+        right: 20px;
+        top: 60px;
+        left: 285px;
+    }
+}
