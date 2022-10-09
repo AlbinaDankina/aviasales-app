@@ -1,9 +1,46 @@
 /* eslint-disable no-param-reassign */
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+
+export const fetchTickets = createAsyncThunk(
+  "tickets/fetchTickets",
+  async function getId(searchId: any) {
+    const url = `https://front-test.dev.aviasales.ru/tickets?searchId=${searchId}`;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(
+        "service is unavailable. Please try again reloading your web-page!",
+      );
+    }
+    const data = await response.json();
+    return data.tickets.slice(0, 5);
+  },
+);
+
+// вытягиваем билеты по айди:
+// export const fetchTickets = async (searchId: any, func: any) => {
+//   try {
+//     const url = `https://front-test.dev.aviasales.ru/tickets?searchId=${searchId}`;
+//     const response = await fetch(url);
+//     if (!response.ok) {
+//       throw new Error(
+//         "service is unavailable. Please try again reloading your web-page!",
+//       );
+//     }
+//     const data = await response.json();
+//     console.log(data.tickets);
+//     func(data.tickets);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// };
 
 type FilterState = {
   transbordingFilters: Array<boolean>;
   optionNames: string[];
+  tickets: any[];
+  stop: boolean;
+  status: null | string;
+  error: null | string;
 };
 
 const initialState: FilterState = {
@@ -15,10 +52,14 @@ const initialState: FilterState = {
     "2 пересадки",
     "3 пересадки",
   ],
+  tickets: [],
+  stop: false,
+  status: null,
+  error: null,
 };
 
 const transbordingSlice = createSlice({
-  name: "transbordingQuantity",
+  name: "tickets",
   initialState,
   reducers: {
     handleFilter(state: FilterState, action) {
@@ -62,6 +103,24 @@ const transbordingSlice = createSlice({
         state.transbordingFilters = updatedCheckedState;
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchTickets.pending, (state: FilterState) => {
+      state.status = "loading";
+      state.error = null;
+      state.stop = false;
+    });
+    builder.addCase(
+      fetchTickets.fulfilled,
+      (state: FilterState, action: any) => {
+        state.status = "resolved";
+        state.tickets = action.payload;
+        state.stop = true;
+      },
+    );
+    builder.addCase(fetchTickets.rejected, (state: FilterState) => {
+      state.error = "error";
+    });
   },
 });
 

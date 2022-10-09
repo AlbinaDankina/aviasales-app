@@ -81,6 +81,7 @@
   padding: 15px;
   background-color: #ffffff;
   font-size: 12px;
+  flex: 1 1 auto;
     font-weight: 600;
     line-height: 20px;
     letter-spacing: 0.5px;
@@ -115,7 +116,8 @@
 
   .sort-btn {
     position: absolute;
-    right: 6em;
+    right: 20px;
+    left: 285px;
     box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
   }

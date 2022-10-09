@@ -1,13 +1,40 @@
+import uniqid from "uniqid";
 import Ticket from "../ticket/ticket";
 import "./tickets-list.modules.scss";
+import { useAppSelector } from "../../hooks";
+import ShowMore from "../show-more/show-more";
 
-// const tickets = [1, 2, 3, 4, 5];
+// interface TicketType {
+//   price: number;
+//   carrier: string;
+//   segments: [
+//     {
+//       origin: string;
+//       destination: string;
+//       date: string;
+//       stops: string[];
+//       duration: number;
+//     },
+//     {
+//       origin: string;
+//       destination: string;
+//       date: string;
+//       stops: string[];
+//       duration: number;
+//     },
+//   ];
+// }
+
 function TicketsList() {
-  // const ticket = tickets.map((tick) => <Ticket />);
+  const tickets = useAppSelector((state) => state.transbordingFilter.tickets);
+  const ticket = tickets.map((data) => {
+    return <Ticket data={data} key={uniqid()} />;
+  });
   return (
     <div>
       <ul className="tickets_list">
-        <Ticket />
+        {ticket}
+        <ShowMore />
       </ul>
     </div>
   );

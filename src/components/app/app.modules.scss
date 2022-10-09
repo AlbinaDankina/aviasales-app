@@ -8,7 +8,8 @@
 @media (min-width: 678px) {
     .app_wrapper {
         position: relative;
-        width: 800px;
+        min-width: 678px;
+        max-width: 800px;
         margin: 150px auto 20px auto;
         height: 100vh;
         
