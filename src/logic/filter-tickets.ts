@@ -16,7 +16,7 @@ function filter(
         ) {
           return ticket;
         }
-        return null;
+        return false;
       });
       updatedTickets.push(...filteredTicketList);
     }

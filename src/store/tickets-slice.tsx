@@ -1,14 +1,8 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-param-reassign */
-import {
-  createSlice,
-  createAsyncThunk,
-  PayloadAction,
-  current,
-} from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { TicketType, FilterState } from "../components/types";
 import filter from "../logic/filter-tickets";
-// import { useEffect } from "react";
 
 // fetchTickets = экшен, который передаем в диспатч в Арр
 export const fetchTickets = createAsyncThunk(
@@ -27,7 +21,7 @@ export const fetchTickets = createAsyncThunk(
         );
       }
       const data = await response.json();
-      return data.tickets.slice(0, 6) as TicketType[];
+      return data.tickets as TicketType[];
     } catch (error: any) {
       return rejectWithValue(error.message);
     }
@@ -67,7 +61,6 @@ const ticketsSlice = createSlice({
       }, 0);
       // клац по all
       if (action.payload.option === state.optionNames[0]) {
-        console.log("1");
         const changedState = Object.keys(state.transbordingFilters).reduce(
           (acc: boolean[], curr: string | number) => {
             acc[+curr] = !state.allchecked;
@@ -81,7 +74,6 @@ const ticketsSlice = createSlice({
         action.payload.option !== state.optionNames[0] &&
         numChecked === 5
       ) {
-        console.log("2");
         // клац по не-all, когда были все true
         state.transbordingFilters[action.payload.i] =
           !state.transbordingFilters[action.payload.i];
@@ -90,22 +82,21 @@ const ticketsSlice = createSlice({
         action.payload.option !== state.optionNames[0] &&
         numChecked === 3
       ) {
-        console.log("3");
         // клац по не-all, когда были три true
         state.transbordingFilters[action.payload.i] =
           !state.transbordingFilters[action.payload.i];
-        state.transbordingFilters[0] = state.allchecked;
+        state.transbordingFilters[0] = !state.allchecked;
+        state.allchecked = !state.allchecked;
       } else {
-        console.log("4");
         // клац по не-all
         state.transbordingFilters[action.payload.i] =
           !state.transbordingFilters[action.payload.i];
       }
-      console.log("state.tickets", current(state.tickets));
+      // тут вызов фильтрации билетов с трушным чекбоксом
       state.filteredTickets = filter(
-        current(state.tickets),
-        current(state.stopslength),
-        current(state.transbordingFilters),
+        state.tickets,
+        state.stopslength,
+        state.transbordingFilters,
       );
     },
     sortFilter(state: FilterState, action: PayloadAction<string>) {
@@ -145,7 +136,7 @@ const ticketsSlice = createSlice({
 
 /*
 // вот тут в export мы автоматически (!) вытащили actions. 
-Соответствующий экшен будет говорить моему главному reducer, 
+Соответствующий экшен будет говорить главному reducer, 
 какое событие произошло. И событие (оно перечислено в reducerS выше - сработает).
 Вручную никакие Actions создавать НЕ НУЖНО, достаточно просто вытащить их через деструктуризацию
 */

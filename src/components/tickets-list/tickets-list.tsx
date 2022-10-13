@@ -40,8 +40,6 @@ function TicketsList() {
     filteredTickets = filter(ticket, stopslength, checkboxState);
   }, [checkboxState]);
 
-  console.log("filteredTickets", filteredTickets);
-
   const tickets = filteredTickets.map((data: TicketType) => {
     return <Ticket data={data} key={uniqid()} />;
   });
