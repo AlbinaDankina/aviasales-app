@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import "./ticket.modules.scss";
+import ticketCss from "./ticket.module.scss";
 
 function Ticket({ data }: any) {
   const durationH = Math.trunc(data.segments[0].duration / 60);
@@ -50,6 +50,7 @@ function Ticket({ data }: any) {
   const timeTo = recalculateTime(time3, time4);
   const timeBack = recalculateTime(time7, time8);
   const transbordings = (qty: number) => {
+    if (qty === 0) return `НЕТ ПЕРЕСАДОК`;
     if (qty === 1) return `${qty} ПЕРЕСАДКА`;
     if (qty >= 2) return `${qty} ПЕРЕСАДКИ`;
     return null;
@@ -58,23 +59,23 @@ function Ticket({ data }: any) {
   const transbordingsBack = transbordings(data.segments[1].stops.length);
 
   return (
-    <li key="#" className="ticket">
-      <div className="ticket_price">{data.price} Р</div>
+    <li key="#" className={ticketCss.ticket}>
+      <div className={ticketCss["ticket-price"]}>{data.price} Р</div>
       <img
-        className="ticket_logo"
+        className={ticketCss["ticket-logo"]}
         src={`//pics.avs.io/99/36/${data.carrier}.png`}
         alt="logo"
       />
-      <table className="ticket_details">
+      <table className={ticketCss["ticket-details"]}>
         <tbody>
-          <tr className="ticket_details-title">
+          <tr className={ticketCss["ticket-details-title"]}>
             <td>
               {data.segments[0].origin} - {data.segments[0].destination}
             </td>
             <td>В ПУТИ</td>
             <td>{transbordingsTo}</td>
           </tr>
-          <tr className="ticket_details-data">
+          <tr className={ticketCss["ticket-details-data"]}>
             <td>
               {time1 > 9 ? time1 : `0${time1}`}:
               {time2 > 9 ? time2 : `0${time2}`} - {timeTo}
@@ -85,14 +86,14 @@ function Ticket({ data }: any) {
             </td>
             <td>{data.segments[0].stops.join(" - ")}</td>
           </tr>
-          <tr className="ticket_details-title">
+          <tr className={ticketCss["ticket-details-title"]}>
             <td>
               {data.segments[1].origin} - {data.segments[1].destination}
             </td>
             <td> В ПУТИ </td>
             <td>{transbordingsBack}</td>
           </tr>
-          <tr className="ticket_details-data">
+          <tr className={ticketCss["ticket-details-data"]}>
             <td>
               {time5 > 9 ? time5 : `0${time5}`}:
               {time6 > 9 ? time6 : `0${time6}`} - {timeBack}

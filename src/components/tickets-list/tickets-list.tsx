@@ -4,12 +4,11 @@ import "antd/dist/antd.css";
 import { useEffect } from "react";
 import uniqid from "uniqid";
 import Ticket from "../ticket/ticket";
-import "./tickets-list.modules.scss";
+import ticketList from "./tickets-list.module.scss";
 import { useAppSelector } from "../../hooks";
 // import ShowMore from "../show-more/show-more";
 import filter from "../../logic/filter-tickets";
 import { TicketType } from "../types";
-// import { TicketType } from "../types";
 
 function TicketsList() {
   // const [firstCard, setFirstCard] = useState(0);
@@ -27,7 +26,6 @@ function TicketsList() {
   const status = useAppSelector(
     (state) => state.transbordingFilter.transbordingFilters,
   );
-  // const loading = useAppSelector((state) => state.transbordingFilter.status);
   const error = useAppSelector((state) => state.transbordingFilter.error);
   const checkboxState = useAppSelector(
     (state) => state.transbordingFilter.transbordingFilters,
@@ -46,7 +44,7 @@ function TicketsList() {
 
   return (
     <div>
-      <ul className="tickets_list">
+      <ul className={ticketList["tickets-list"]}>
         {status.indexOf(true) === -1 && !error ? (
           <Alert
             message="Рейсов, подходящих под заданные фильтры, не найдено"
@@ -57,7 +55,6 @@ function TicketsList() {
         )}
         {error ? (
           <Alert
-            // style={{ position: "absolute", top: "-40px" }}
             message="Произошла ошибка сети. Пожалуйста, обновите страницу."
             type="error"
           />

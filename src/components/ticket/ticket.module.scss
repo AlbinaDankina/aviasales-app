@@ -9,14 +9,14 @@
     background-color: #ffffff;
 
 
-    &_logo {
+    &-logo {
         position: absolute;
         right: 20px;
         top: 15px; 
         background-color: #ffffff;
     }
 
-    &_price {
+    &-price {
         position: absolute;
         left: 20px;
         top: 15px; 
@@ -26,7 +26,7 @@
         background-color: #ffffff;
     }
 
-    &_details {
+    &-details {
       margin-top: 35px;
       width: 100%;
       border-collapse: collapse;

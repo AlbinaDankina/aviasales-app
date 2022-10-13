@@ -1,15 +1,13 @@
- .app_wrapper {
+ .app-wrapper {
     position: relative;
     height: 100vh;
     width:100%;
     box-sizing: content-box;
-    margin-top: 50px;
-
-   
+    margin-top: 50px;   
 }
 
 @media (min-width: 678px) {
-    .app_wrapper {
+    .app-wrapper {
         position: relative;
         min-width: 678px;
         max-width: 800px;
@@ -25,17 +23,16 @@
         font-weight: 600;
         color: #5e6fa3;
     }
-        
-        .ant-alert {
-            position: absolute;
-            // top: 80px;
-            // right: 40px;
-            // left: 305px;
-            width: 100%;
-        }
+
+    .ant-alert {
+        position: absolute;
+        /* // top: 80px;
+        // right: 40px;
+        // left: 305px; */
+        width: 100%;
     }
 
-    .logo {
+       .logo {
         background-image: url('./Logo.png');
         position: absolute;
         top: -90px;
@@ -44,5 +41,7 @@
         height: 83px;
         z-index: 40;
     }
+} 
 
+ 
 }

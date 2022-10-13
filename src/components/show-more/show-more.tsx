@@ -1,10 +1,16 @@
 import PropTypes from "prop-types";
-import "./show-more.modules.scss";
+import showMoreCss from "./show-more.module.scss";
 
 function ShowMore({ sliceResults }: any) {
   return (
-    <button type="button" className="show-more" onClick={sliceResults}>
-      <span className="show-more_text">ПОКАЗАТЬ ЕЩЕ 5 БИЛЕТОВ</span>
+    <button
+      type="button"
+      className={showMoreCss["show-more"]}
+      onClick={sliceResults}
+    >
+      <span className={showMoreCss["show-more_text"]}>
+        ПОКАЗАТЬ ЕЩЕ 5 БИЛЕТОВ
+      </span>
     </button>
   );
 }
