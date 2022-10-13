@@ -8,7 +8,7 @@ function ShowMore({ sliceResults }: any) {
       className={showMoreCss["show-more"]}
       onClick={sliceResults}
     >
-      <span className={showMoreCss["show-more_text"]}>
+      <span className={showMoreCss["show-more-text"]}>
         ПОКАЗАТЬ ЕЩЕ 5 БИЛЕТОВ
       </span>
     </button>

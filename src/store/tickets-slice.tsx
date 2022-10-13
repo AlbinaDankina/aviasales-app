@@ -40,6 +40,9 @@ const initialState: FilterState = {
   sortNames: ["Самый быстрый", "Самый дешевый"],
   tickets: [],
   filteredTickets: [],
+  visItems: [],
+  firstCard: 5,
+  lastCard: 10,
   userId: "",
   stopslength: [-1, 0, 1, 2, 3],
   stop: false,
@@ -99,6 +102,17 @@ const ticketsSlice = createSlice({
         state.transbordingFilters,
       );
     },
+    showMore(state: FilterState) {
+      state.visItems = [
+        ...state.visItems,
+        ...state.filteredTickets.slice(state.firstCard, state.lastCard),
+      ];
+      state.firstCard += 5;
+      state.lastCard += 5;
+    },
+    showInitial(state: FilterState) {
+      state.visItems = state.filteredTickets.slice(0, 5);
+    },
     sortFilter(state: FilterState, action: PayloadAction<string>) {
       if (action.payload === state.sortNames[0]) {
         state.filteredTickets.sort(
@@ -140,6 +154,7 @@ const ticketsSlice = createSlice({
 какое событие произошло. И событие (оно перечислено в reducerS выше - сработает).
 Вручную никакие Actions создавать НЕ НУЖНО, достаточно просто вытащить их через деструктуризацию
 */
-export const { handleFilter, sortFilter } = ticketsSlice.actions;
+export const { handleFilter, sortFilter, showMore, showInitial } =
+  ticketsSlice.actions;
 
 export default ticketsSlice.reducer; // тут в ед.числе reducer , формируется из набора reducers. И уже его подключаем в store

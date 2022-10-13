@@ -9,6 +9,24 @@
         margin: 10px 20px;
         display: flex;
         flex-direction: column;
+
+        .show-more {
+        background-color: #2196F3;
+        color: #ffffff;
+        padding: 15px 20px;
+        border-radius: 5px;
+        margin-top: 5px;
+        
+        &-text {
+            background-color: #2196F3;
+            font-family: Open Sans;
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 20px;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+}
     }
 
 
@@ -27,7 +45,5 @@
         left: -260px;
     }
     }
-
-    
 
 }

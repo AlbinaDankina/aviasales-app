@@ -5,24 +5,17 @@ import { useEffect } from "react";
 import uniqid from "uniqid";
 import Ticket from "../ticket/ticket";
 import ticketList from "./tickets-list.module.scss";
-import { useAppSelector } from "../../hooks";
-// import ShowMore from "../show-more/show-more";
+import { useAppSelector, useAppDispatch } from "../../hooks";
 import filter from "../../logic/filter-tickets";
 import { TicketType } from "../types";
+import { showMore, showInitial } from "../../store/tickets-slice";
 
 function TicketsList() {
-  // const [firstCard, setFirstCard] = useState(0);
-  // const [lastCard, setLastCard] = useState(5);
   const ticket = useAppSelector((state) => state.transbordingFilter.tickets);
-  let filteredTickets = useAppSelector(
-    (state) => state.transbordingFilter.filteredTickets,
-  );
-  // const showTickets = filteredTickets.slice(firstCard, lastCard);
-  // const sliceResults = (): void => {
-  //   setFirstCard(firstCard + 5);
-  //   setLastCard(lastCard + 5);
-  // };
+  const visItems = useAppSelector((state) => state.transbordingFilter.visItems);
+  const dispatch = useAppDispatch();
 
+  // далее - status & error - для условного рендеринга, checkboxState & stopslength - для useEffect с билетами
   const status = useAppSelector(
     (state) => state.transbordingFilter.transbordingFilters,
   );
@@ -33,12 +26,18 @@ function TicketsList() {
   const stopslength = useAppSelector(
     (state) => state.transbordingFilter.stopslength,
   );
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  let filteredTickets = useAppSelector(
+    (state) => state.transbordingFilter.filteredTickets,
+  );
 
+  // вытягиваем отсортированные билеты + делаем вывод на экран первой партии билетов
   useEffect(() => {
     filteredTickets = filter(ticket, stopslength, checkboxState);
+    dispatch(showInitial());
   }, [checkboxState]);
 
-  const tickets = filteredTickets.map((data: TicketType) => {
+  const tickets = visItems.map((data: TicketType) => {
     return <Ticket data={data} key={uniqid()} />;
   });
 
@@ -59,6 +58,17 @@ function TicketsList() {
             type="error"
           />
         ) : null}
+
+        <button
+          id="show-more"
+          type="button"
+          className={ticketList["show-more"]}
+          onClick={() => dispatch(showMore())}
+        >
+          <span className={ticketList["show-more-text"]}>
+            ПОКАЗАТЬ ЕЩЕ 5 БИЛЕТОВ
+          </span>
+        </button>
       </ul>
     </div>
   );

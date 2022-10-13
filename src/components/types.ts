@@ -17,6 +17,9 @@ export type FilterState = {
   sortNames: [string, string];
   tickets: TicketType[];
   filteredTickets: TicketType[] | any;
+  visItems: TicketType[] | any;
+  firstCard: number;
+  lastCard: number;
   userId: string | number;
   stopslength: number[];
   stop: boolean;
