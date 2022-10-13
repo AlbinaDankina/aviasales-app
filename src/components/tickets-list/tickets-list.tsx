@@ -59,16 +59,18 @@ function TicketsList() {
           />
         ) : null}
 
-        <button
-          id="show-more"
-          type="button"
-          className={ticketList["show-more"]}
-          onClick={() => dispatch(showMore())}
-        >
-          <span className={ticketList["show-more-text"]}>
-            ПОКАЗАТЬ ЕЩЕ 5 БИЛЕТОВ
-          </span>
-        </button>
+        {visItems.length !== 0 && (
+          <button
+            id="show-more"
+            type="button"
+            className={ticketList["show-more"]}
+            onClick={() => dispatch(showMore())}
+          >
+            <span className={ticketList["show-more-text"]}>
+              ПОКАЗАТЬ ЕЩЕ 5 БИЛЕТОВ
+            </span>
+          </button>
+        )}
       </ul>
     </div>
   );

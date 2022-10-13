@@ -115,13 +115,13 @@ const ticketsSlice = createSlice({
     },
     sortFilter(state: FilterState, action: PayloadAction<string>) {
       if (action.payload === state.sortNames[0]) {
-        state.filteredTickets.sort(
+        state.visItems.sort(
           (prev: TicketType, cur: TicketType) =>
             prev.segments[0].duration - cur.segments[0].duration,
         );
       }
       if (action.payload === state.sortNames[1]) {
-        state.filteredTickets.sort(
+        state.visItems.sort(
           (prev: TicketType, cur: TicketType) => prev.price - cur.price,
         );
       }
