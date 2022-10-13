@@ -3,6 +3,9 @@
     height: 100vh;
     width:100%;
     box-sizing: content-box;
+    margin-top: 50px;
+
+   
 }
 
 @media (min-width: 678px) {
@@ -12,7 +15,24 @@
         max-width: 800px;
         margin: 150px auto 20px auto;
         height: 100vh;
+
+        &-loader {
+        position: absolute;
+        left: 20px;
+        top: 150px;
+        width: 320px;
+        padding: 20px;
+        font-weight: 600;
+        color: #5e6fa3;
+    }
         
+        .ant-alert {
+            position: absolute;
+            // top: 80px;
+            // right: 40px;
+            // left: 305px;
+            width: 100%;
+        }
     }
 
     .logo {
